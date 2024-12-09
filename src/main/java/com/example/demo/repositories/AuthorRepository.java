@@ -43,8 +43,8 @@ public class AuthorRepository implements IAuthorRepository {
         return query.getSingleResult();
     }
     public List<Author> getAllAuthors() {
-        TypedQuery<Author> query = entityManager.createQuery("SELECT a FROM Author a JOIN FETCH a.books", Author.class);
-        return  query.getResultList();
+        TypedQuery<Author> query = entityManager.createQuery("SELECT a FROM Author a LEFT JOIN FETCH a.books", Author.class);
+        return query.getResultList();
     }
 
     public void deleteAuthor(Long authorId) {

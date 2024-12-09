@@ -103,8 +103,7 @@ public class AuthorRepositoryTest {
         existingAuthor.setName("Author 3");
         existingAuthor.setBio("Not Cool Author Bio");
 
-        Author result = entityManager.merge(existingAuthor);
-
+        Author result = authorRepository.updateAuthor(existingAuthor, existingAuthor.getId());
         assertNotNull(result);
         assertEquals("Author 3", result.getName());
         assertEquals("Not Cool Author Bio", result.getBio());

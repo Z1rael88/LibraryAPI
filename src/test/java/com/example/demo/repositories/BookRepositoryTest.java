@@ -98,19 +98,19 @@ public class BookRepositoryTest {
         entityManager.persist(author2);
 
         Book book = new Book();
-        book.setTitle("Old Title");
-        book.setGenre("Mystery");
+        book.setTitle("Book2");
+        book.setGenre("Mystery2");
         book.setAuthor(author1);
         entityManager.persist(book);
         entityManager.flush();
-
         Book existingBook = entityManager.find(Book.class, book.getId());
 
         existingBook.setTitle("New Title");
         existingBook.setGenre("Thriller");
         existingBook.setAuthor(author2);
+        existingBook.setAuthorId(author2.getId());
 
-        Book result = entityManager.merge(existingBook);
+        Book result = bookRepository.updateBook(existingBook, existingBook.getId());
 
         assertNotNull(result);
         assertEquals("New Title", result.getTitle());

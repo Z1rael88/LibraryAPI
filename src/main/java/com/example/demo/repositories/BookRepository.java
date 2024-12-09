@@ -40,6 +40,7 @@ public class BookRepository implements IBookRepository {
     }
     @Transactional
     public Book updateBook(Book book,Long bookId) {
+        //book.setTitle("ABC");
         var foundBook = getBookWithAuthor(bookId);
         var bookAuthor = authorRepository.getAuthorWithoutBooks(book.getAuthorId());
         foundBook.setTitle(book.getTitle());
